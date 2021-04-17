@@ -79,8 +79,8 @@ Eventually, all three approaches came up with very similar results when I try to
 
 I wrote a simple enough script which capture a frame from your USB web-camera, detect faces on it, predict emotion and visualize in similar way as given on Kaggle page. ![example](https://miro.medium.com/max/1400/1*rSOC2rIKZ3NSkE3j1MetdQ.png)
 
-Related files are: `video_cam.py`, `emotion_classifier.py` + your ttf font.
-
-## Trained models
+Related files are: `video_cam.py`, `emotion_classifier.py` + your ttf font and model checkpoint:
 - Inception V3 [checkpoint](https://drive.google.com/file/d/1ItfDKQmCGKxA-b2Dhknil9_AW6Mp0xMv/view?usp=sharing)
 - BiT-M r50x1 [checkpoint](https://drive.google.com/file/d/1jiknkqJmwvZqeVplntZyfj9nxvYYJHzV/view?usp=sharing)
+
+I din't bother with CLI so do a simple edit on the `video_cam.py` to specify path to the config.ini file (inside checkpoint zip archive) in code line `EmotionClassifier(' ... ')`.
