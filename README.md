@@ -5,7 +5,7 @@ I analyzed different training strategies of convolutional neural networks (CNN) 
 
 *(Note: notebooks are in Russian but code comments are in English)*
 
-## Requirements
+## Used libraries.
 1. Python 3.8.8
 2. python packages:
     - tensorflow 2.4.1
