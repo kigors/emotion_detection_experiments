@@ -37,7 +37,7 @@ To start working with repo, do the following preparations:
     - [model](https://github.com/opencv/opencv_3rdparty/raw/dnn_samples_face_detector_20170830/res10_300x300_ssd_iter_140000.caffemodel) rename to `opencv_face_detector.caffemodel`
     - [config](https://github.com/opencv/opencv/blob/master/samples/dnn/face_detector/opencv_face_detector.pbtxt)
     - place both files to `./face_detection_data` folder.
-3. If you want to play with emotion detection in real-time from web-camera, you'll need to download any truetype font you like, for example from [Google Fonts](https://fonts.google.com/). You will have to edit *video_cam.py* file and change the line with `BoxDrawer(font_ttf=' ... ')` with that filename (under `__name__ == '__main__'` section).
+3. If you want to play with emotion detection in real-time from web-camera, you'll need to download any truetype font you like, for example from [Google Fonts](https://fonts.google.com/). You will have to edit *video_cam.py* file and change the line `BoxDrawer(font_ttf=' ... ')` with this filename (under `__name__ == '__main__'` section).
 
 ## Data analysis
 My analysis starts with [EDA_and_Train_model.ipynb](https://github.com/kigors/emotion_detection_experiments/blob/master/EDA_and_Train_model.ipynb) file. Look through dataset images, get some statistics, prepare some custom filters for extra augmentation, split data into train and validation datasets.
