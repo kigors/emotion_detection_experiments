@@ -1,4 +1,6 @@
 import os
+# silence tensorflow messages except ERRORs
+# must be mentioned before importing tensorflow
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import tensorflow as tf
 import configparser
