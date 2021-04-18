@@ -83,7 +83,7 @@ Anyway, I see this method of predicting V-A values being quite useful when it co
 
 I made a simple script that captures a frame from your USB web-camera, detect faces on it, predict emotion and visualize result in a similar way to a given example on Kaggle page. ![example](https://miro.medium.com/max/1400/1*rSOC2rIKZ3NSkE3j1MetdQ.png)
 
-Related files are in `camera` folder: `video_cam.py`, `emotion_classifier.py` + your ttf file (true type font). To make script work you need to train your emotion classifier or download of the the following checkpoints:
+Related files are in `camera` folder: `video_cam.py`, `emotion_classifier.py` + your ttf file (true type font). To make script work you need to train your emotion classifier or download one of the following checkpoints:
 - Inception V3 [checkpoint](https://drive.google.com/file/d/1ItfDKQmCGKxA-b2Dhknil9_AW6Mp0xMv/view?usp=sharing)
 - BiT-M r50x1 [checkpoint](https://drive.google.com/file/d/1jiknkqJmwvZqeVplntZyfj9nxvYYJHzV/view?usp=sharing)
 
