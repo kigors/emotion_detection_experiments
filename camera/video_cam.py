@@ -200,7 +200,7 @@ def box_scoring(box):
 
 
 def get_faces(frame, boxes):
-    """Cut faces as per box coords, ignoring faces smaller than 10px and removing
+    """Crop faces as per box coords, ignoring faces smaller than 10px and removing
     corresponding boxes from the list."""
     faces = []
     # when new face appear box size could be too small, need to be removed
@@ -232,7 +232,14 @@ def get_faces(frame, boxes):
 
 
 if __name__ == '__main__':
-
+    
+    # make project folder as current work dir
+    # asuming script is launched either from project folder or ./camera subfolder
+    import os
+    cwd = Path(os.getcwd())
+    if 'emotion_classifier.py' in [i.name for i in cwd.glob('*')]:
+        os.chdir(Path(os.getcwd()).parent) 
+    
     print('Loading face detector...', end=' ')
     fd = FaceDetector(folder='face_detection_data/')
     
@@ -241,13 +248,13 @@ if __name__ == '__main__':
     print('Done.')
     print(clf)
     
-    print('Done.\nLoading camera...', end=' ')
+    print('Loading camera...', end=' ')
     cam = CameraWindow(show_fps=True, selfie=True) # you can change width/height
-    box_drawer = BoxDrawer(font_ttf='fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf')
+    box_drawer = BoxDrawer(font_ttf='camera/RobotoCondensed-Regular.ttf')
     print('Done.')
 
-    emotion_frequency = 0.3
-    previous_emo_time = time.time()
+    emotion_frequency = 0.3 # limit fastest update rate of emotion label, in sec
+    previous_emotion_time = time.time()
 
     while True:
         
@@ -263,7 +270,7 @@ if __name__ == '__main__':
         faces = get_faces(frame, boxes)
         
         # limit emotion update rate to avoid label flickering too fast
-        if time.time() - previous_emo_time >= emotion_frequency:
+        if time.time() - previous_emotion_time >= emotion_frequency:
             if faces != []:
                 labels, probabilities = clf.predict(faces)
             else:
