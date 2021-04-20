@@ -56,7 +56,7 @@ class FaceDetector:
 
 # simple wrapper for opencv camera
 class CameraWindow:
-    def __init__(self, width=640, height=480, show_fps=True, selfie=False):
+    def __init__(self, width=640, height=480, show_fps=True, selfie=False, recording=False):
         self.cam = cv2.VideoCapture(0)
         if not self.cam.isOpened():
             raise IOError('Failed to detect usb camera')
@@ -69,10 +69,16 @@ class CameraWindow:
             self.fps = None
             self.prev_time = None
         self.selfie = selfie
+        self.recording = recording
+        if self.recording:
+            self.vid_cod = cv2.VideoWriter_fourcc(*'XVID')
+            self.output = cv2.VideoWriter("cam_video.avi", self.vid_cod, 20.0, (640,480))
 
 
     def __del__(self):
         self.cam.release()
+        if self.recording:
+            self.output.release()
 
 
     def get_image(self):
@@ -96,6 +102,9 @@ class CameraWindow:
                 color=(0, 0, 150), 
                 thickness=1)
         
+        if self.recording:
+            self.output.write(image)
+
         cv2.imshow('Video - press q to quit', image)
 
 
@@ -249,7 +258,7 @@ if __name__ == '__main__':
     print(clf)
     
     print('Loading camera...', end=' ')
-    cam = CameraWindow(show_fps=True, selfie=True) # you can change width/height
+    cam = CameraWindow(width=800, height=600, show_fps=True, selfie=True, recording=True) # you can change width/height
     box_drawer = BoxDrawer(font_ttf='camera/RobotoCondensed-Regular.ttf')
     print('Done.')
 
@@ -261,7 +270,8 @@ if __name__ == '__main__':
         # Capture frame-by-frame
         ret, frame = cam.get_image()
         if ret == False:
-            continue
+            print("Can't get video stream.")
+            break
 
         boxes = fd.get_boxes(frame)
         # sort boxes from large to small    
